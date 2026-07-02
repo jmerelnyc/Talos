@@ -14,7 +14,9 @@ DEFAULT_OLLAMA = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
 
 
 def _default_name() -> str:
-    return os.environ.get("COMPUTERNAME") or "worker"
+    import socket
+
+    return os.environ.get("COMPUTERNAME") or socket.gethostname() or "worker"
 
 
 @dataclass
