@@ -1,0 +1,11 @@
+model_list:
+  - model_name: talos-auto
+    litellm_params:
+      model: openai/talos-auto
+      api_base: https://api.talos.ai/v1
+      api_key: os.environ/TALOS_API_KEY
+  - model_name: talos-llama-3.1-8b
+    litellm_params:
+      model: openai/talos-llama-3.1-8b
+      api_base: https://api.talos.ai/v1
+      api_key: os.environ/TALOS_API_KEY
