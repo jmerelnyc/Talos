@@ -10,6 +10,7 @@ from typing import Dict
 import aiohttp
 
 from .config import WorkerConfig
+from .dashboard import start_dashboard
 from .gpu import detect_gpu
 from .inference import list_models, stream_chat
 from .state import RuntimeState
@@ -99,8 +100,7 @@ async def _connect_once(config: WorkerConfig, state: RuntimeState) -> None:
                 for t in jobs.values():
                     t.cancel()
 
-
-async def run_worker(config: WorkerConfig) -> None:
+async def run_worker(config: WorkerConfig, dashboard_port: int | None) -> None:
     if not config.token:
         raise SystemExit("Not paired. Run `talos-worker pair` first.")
 
@@ -112,6 +112,11 @@ async def run_worker(config: WorkerConfig) -> None:
         gpu_name=gpu["name"] if gpu else None,
         vram_mb=gpu["vramMb"] if gpu else None,
     )
+
+    runner = None
+    if dashboard_port:
+        runner = await start_dashboard(state, dashboard_port)
+        print(f"[talos] local dashboard at http://127.0.0.1:{dashboard_port}")
 
     backoff = 1.0
     try:
@@ -125,3 +130,6 @@ async def run_worker(config: WorkerConfig) -> None:
                 backoff = min(30.0, backoff * 2)
     except asyncio.CancelledError:
         pass
+    finally:
+        if runner:
+            await runner.cleanup()
