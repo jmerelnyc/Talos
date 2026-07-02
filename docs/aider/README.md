@@ -11,7 +11,8 @@ aider --model openai/talos-auto
 
 For local development, point `OPENAI_API_BASE` at `http://localhost:8080/v1`.
 
-You can also set these in `.aider.conf.yml`:
+You can also copy [`.aider.conf.yml`](./.aider.conf.yml) into your project or
+home directory:
 
 ```yaml
 openai-api-base: https://api.talos.ai/v1
