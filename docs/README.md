@@ -13,14 +13,14 @@ can use it by setting a base URL, an API key, and a model name.
 `talos-auto` is a routing model: it forwards to the best available backend. Open
 `talos-*` models are served by the community GPU pool.
 
-Guides:
+Guides (each folder has a README plus a ready-to-copy config file):
 
-- [Cursor](./cursor.md)
-- [VS Code (Continue / Cline)](./vscode.md)
-- [Claude Code](./claude-code.md)
-- [JetBrains AI Assistant](./jetbrains.md)
-- [Zed](./zed.md)
-- [Aider](./aider.md)
+- [Cursor](./cursor)
+- [VS Code (Continue / Cline)](./vscode)
+- [Claude Code](./claude-code)
+- [JetBrains AI Assistant](./jetbrains)
+- [Zed](./zed)
+- [Aider](./aider)
 
 ## Quick check
 
