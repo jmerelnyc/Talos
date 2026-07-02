@@ -23,3 +23,16 @@ Notes:
   Assistant -> Third-party AI providers** directly rather than under Models.
 - If the connection test fails, confirm the URL ends with `/v1` and the key is
   active on your dashboard.
+
+## Quick check
+
+Run [`verify.sh`](./verify.sh) to confirm your key and the gateway work
+before configuring the provider:
+
+```bash
+export TALOS_API_KEY=talos_YOUR_KEY
+bash verify.sh
+```
+
+For a runnable client instead of curl, see [`openai_sdk.py`](./openai_sdk.py)
+(same script as `examples/python/`).
