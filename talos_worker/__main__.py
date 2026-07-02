@@ -46,7 +46,7 @@ async def _run(args: argparse.Namespace) -> None:
     if args.server:
         config.server = args.server
     if args.allocation is not None:
-        config.allocation = args.allocation
+        config.allocation = max(0.0, min(1.0, args.allocation))
         config.save()
     port = None if args.no_dashboard else args.dashboard_port
     await run_worker(config, port)
