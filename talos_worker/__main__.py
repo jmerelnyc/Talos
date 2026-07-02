@@ -6,6 +6,7 @@ import asyncio
 
 import aiohttp
 
+from .client import run_worker
 from .config import WorkerConfig
 from .gpu import detect_gpu
 from .inference import list_models
@@ -40,6 +41,17 @@ async def _pair(args: argparse.Namespace) -> None:
     print("[talos] start sharing with: talos-worker run")
 
 
+async def _run(args: argparse.Namespace) -> None:
+    config = WorkerConfig.load()
+    if args.server:
+        config.server = args.server
+    if args.allocation is not None:
+        config.allocation = args.allocation
+        config.save()
+    port = None if args.no_dashboard else args.dashboard_port
+    await run_worker(config, port)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(prog="talos-worker", description="Talos GPU worker")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -50,6 +62,13 @@ def main() -> None:
     p_pair.add_argument("--ollama", help="Ollama base URL")
     p_pair.add_argument("--name", help="Friendly worker name")
     p_pair.set_defaults(func=_pair)
+
+    p_run = sub.add_parser("run", help="Connect and start serving inference jobs")
+    p_run.add_argument("--server", help="Override server URL")
+    p_run.add_argument("--allocation", type=float, help="Power allocation 0..1 (e.g. 0.5)")
+    p_run.add_argument("--dashboard-port", type=int, default=8674, help="Local dashboard port")
+    p_run.add_argument("--no-dashboard", action="store_true", help="Disable the local dashboard")
+    p_run.set_defaults(func=_run)
 
     args = parser.parse_args()
     asyncio.run(args.func(args))
