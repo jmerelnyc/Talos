@@ -44,6 +44,8 @@ Open a GitHub issue with:
 ## Pull requests
 
 - Keep PRs focused: one change per PR is easier to review than a bundle.
-- Add or update a page under `docs/` if you change CLI flags or behavior.
+- Add or update a page under `docs/` if you change CLI flags or behavior, or
+  the matching tool folder (`cursor/`, `vscode/`, `claude-code/`,
+  `jetbrains/`, `zed/`, `aider/`) if you change talos-auto's API shape.
 - No breaking changes to the `pair`, `run`, or `status` command surface
   without discussion first, since existing installs depend on it.
