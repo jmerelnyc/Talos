@@ -14,6 +14,9 @@ third-party provider settings.
 
 For local development, use `http://localhost:8080/v1` as the URL instead.
 
+See [`talos.env`](./talos.env) for the three values above in one place to
+copy from.
+
 Notes:
 
 - Some JetBrains versions place this under **Settings -> Tools -> AI
