@@ -52,6 +52,7 @@ async def _heartbeat(ws: aiohttp.ClientWebSocketResponse, state: RuntimeState, i
             {"type": "heartbeat", "allocation": state.allocation, "busy": state.jobs_active > 0}
         )
 
+
 async def _connect_once(config: WorkerConfig, state: RuntimeState) -> None:
     async with aiohttp.ClientSession() as session:
         models = await list_models(session, config.ollama)
@@ -100,6 +101,7 @@ async def _connect_once(config: WorkerConfig, state: RuntimeState) -> None:
                 for t in jobs.values():
                     t.cancel()
 
+
 async def run_worker(config: WorkerConfig, dashboard_port: int | None) -> None:
     if not config.token:
         raise SystemExit("Not paired. Run `talos-worker pair` first.")
@@ -123,6 +125,7 @@ async def run_worker(config: WorkerConfig, dashboard_port: int | None) -> None:
         while True:
             try:
                 await _connect_once(config, state)
+                backoff = 1.0  # clean disconnect: reset backoff
                 print("[talos] disconnected, reconnecting...")
             except (aiohttp.ClientError, OSError) as exc:
                 print(f"[talos] connection error: {exc}; retrying in {backoff:.0f}s")
