@@ -1,6 +1,7 @@
 """Shared runtime state for the running worker (read by the local dashboard)."""
 from __future__ import annotations
 
+import time
 from dataclasses import dataclass, field
 from typing import List, Optional
 
@@ -17,6 +18,11 @@ class RuntimeState:
     jobs_active: int = 0
     jobs_handled: int = 0
     tokens_served: int = 0
+    started_at: float = field(default_factory=time.time)
+
+    @property
+    def uptime_seconds(self) -> int:
+        return int(time.time() - self.started_at)
 
     def snapshot(self) -> dict:
         return {
@@ -30,4 +36,5 @@ class RuntimeState:
             "jobsActive": self.jobs_active,
             "jobsHandled": self.jobs_handled,
             "tokensServed": self.tokens_served,
+            "uptimeSeconds": self.uptime_seconds,
         }
