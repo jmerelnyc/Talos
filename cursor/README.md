@@ -25,6 +25,19 @@ Cursor supports OpenAI-compatible endpoints with a custom base URL.
 See [`talos.env`](./talos.env) for the three values above in one place to
 copy from.
 
+## Quick check
+
+Run [`verify.sh`](./verify.sh) to confirm your key and the gateway work
+before wiring up Cursor:
+
+```bash
+export TALOS_API_KEY=talos_YOUR_KEY
+bash verify.sh
+```
+
+For a runnable client instead of curl, see [`openai_sdk.py`](./openai_sdk.py)
+(same script as `examples/python/`).
+
 Notes:
 
 - Cursor sends OpenAI `chat/completions` requests; the gateway streams
