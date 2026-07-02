@@ -1,0 +1,11 @@
+{
+  "models": [
+    {
+      "title": "talos-auto",
+      "provider": "openai",
+      "model": "talos-auto",
+      "apiBase": "https://api.talos.ai/v1",
+      "apiKey": "talos_YOUR_KEY"
+    }
+  ]
+}
