@@ -26,6 +26,9 @@ class WorkerConfig:
     token: str | None = None
     worker_id: str | None = None
     name: str = field(default_factory=_default_name)
+    # Fraction of the machine offered to the network (0..1). Interpreted as a
+    # concurrency/duty-cycle dial, not a literal power percentage.
+    allocation: float = 0.5
 
     @property
     def ws_url(self) -> str:
