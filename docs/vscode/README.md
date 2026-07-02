@@ -4,8 +4,8 @@ Both extensions accept an OpenAI-compatible provider.
 
 ## Continue
 
-Edit `~/.continue/config.json` (or use the "Open config" command) and add a
-model:
+Edit `~/.continue/config.json` (or use the "Open config" command) and add the
+model block from [`continue.config.json`](./continue.config.json):
 
 ```json
 {
