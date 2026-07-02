@@ -4,7 +4,7 @@ Claude Code speaks the Anthropic Messages API. The Talos gateway implements an
 Anthropic-compatible endpoint (`POST /v1/messages`), so you can point Claude
 Code at it with environment variables.
 
-Set these before launching `claude`:
+Set these before launching `claude`, or source [`env.sh`](./env.sh) directly:
 
 ```bash
 export ANTHROPIC_BASE_URL="https://api.talos.ai"
