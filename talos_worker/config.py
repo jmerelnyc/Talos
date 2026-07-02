@@ -27,6 +27,12 @@ class WorkerConfig:
     worker_id: str | None = None
     name: str = field(default_factory=_default_name)
 
+    @property
+    def ws_url(self) -> str:
+        base = self.server.rstrip("/")
+        ws = base.replace("https://", "wss://").replace("http://", "ws://")
+        return f"{ws}/worker/ws?token={self.token}"
+
     def save(self) -> None:
         CONFIG_DIR.mkdir(parents=True, exist_ok=True)
         CONFIG_PATH.write_text(json.dumps(asdict(self), indent=2))
