@@ -3,7 +3,8 @@
 Zed's assistant panel supports OpenAI-compatible providers through
 `settings.json`.
 
-Open **Zed -> Settings -> Open Settings** and add:
+Open **Zed -> Settings -> Open Settings** and merge in the block from
+[`settings.json`](./settings.json):
 
 ```json
 {
