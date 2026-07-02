@@ -33,3 +33,8 @@ def detect_gpu() -> Optional[GpuInfo]:
         return {"name": name, "vramMb": int(mem.total // (1024 * 1024))}
     except Exception:
         return None
+    finally:
+        try:
+            pynvml.nvmlShutdown()
+        except Exception:
+            pass
