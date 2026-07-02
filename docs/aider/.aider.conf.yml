@@ -1,0 +1,3 @@
+openai-api-base: https://api.talos.ai/v1
+openai-api-key: talos_YOUR_KEY
+model: openai/talos-auto
