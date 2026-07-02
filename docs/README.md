@@ -18,3 +18,12 @@ Guides:
 - [Cursor](./cursor.md)
 - [VS Code (Continue / Cline)](./vscode.md)
 - [Claude Code](./claude-code.md)
+
+## Quick check
+
+```bash
+curl https://api.talos.ai/v1/chat/completions \
+  -H "Authorization: Bearer talos_YOUR_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"model":"talos-auto","messages":[{"role":"user","content":"Say hi"}]}'
+```
