@@ -22,6 +22,9 @@ Cursor supports OpenAI-compatible endpoints with a custom base URL.
 
 5. Click **Verify**. Select `talos-auto` in the chat/model picker.
 
+See [`talos.env`](./talos.env) for the three values above in one place to
+copy from.
+
 Notes:
 
 - Cursor sends OpenAI `chat/completions` requests; the gateway streams
