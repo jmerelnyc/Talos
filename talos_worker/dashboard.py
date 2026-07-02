@@ -23,6 +23,8 @@ PAGE = """<!doctype html>
   .row { display:flex; justify-content:space-between; padding:.4rem 0; border-bottom:1px solid rgba(0,0,0,.08); }
   .dot { display:inline-block; width:.6rem; height:.6rem; border-radius:50%; }
   .on { background:#1a7f37; } .off { background:#888; }
+  input[type=range]{ width:100%; }
+  button { background:#111; color:#c4bab0; border:0; padding:.6rem 1rem; text-transform:uppercase; letter-spacing:.1em; cursor:pointer; }
 </style>
 </head>
 <body>
@@ -35,6 +37,12 @@ PAGE = """<!doctype html>
     <div class="row"><span>Jobs handled</span><span id="jobs">-</span></div>
     <div class="row"><span>Tokens served</span><span id="tokens">-</span></div>
     <div class="row"><span>Active jobs</span><span id="active">-</span></div>
+    <div style="margin-top:1.5rem">
+      <label>Power allocation: <strong id="allocLabel">50%</strong></label>
+      <input id="alloc" type="range" min="0" max="100" value="50" />
+      <button id="save">Save</button>
+      <span id="saved" style="margin-left:.5rem;color:#1a7f37"></span>
+    </div>
   </div>
 <script>
 async function refresh() {
@@ -48,6 +56,14 @@ async function refresh() {
   document.getElementById('tokens').textContent = s.tokensServed;
   document.getElementById('active').textContent = s.jobsActive;
 }
+const alloc = document.getElementById('alloc');
+const label = document.getElementById('allocLabel');
+alloc.addEventListener('input', () => label.textContent = alloc.value + '%');
+document.getElementById('save').addEventListener('click', async () => {
+  await fetch('/api/allocation', { method:'POST', headers:{'content-type':'application/json'},
+    body: JSON.stringify({ allocation: Number(alloc.value) / 100 }) });
+  const el = document.getElementById('saved'); el.textContent = 'saved'; setTimeout(()=>el.textContent='',1500);
+});
 refresh(); setInterval(refresh, 2000);
 </script>
 </body>
@@ -63,10 +79,17 @@ def build_app(state: RuntimeState) -> web.Application:
     async def status(_req):
         return web.json_response(state.snapshot())
 
+    async def set_allocation(req):
+        data = await req.json()
+        alloc = float(data.get("allocation", state.allocation))
+        state.allocation = max(0.0, min(1.0, alloc))
+        return web.json_response({"allocation": state.allocation})
+
     app.add_routes(
         [
             web.get("/", index),
             web.get("/api/status", status),
+            web.post("/api/allocation", set_allocation),
         ]
     )
     return app
