@@ -33,3 +33,16 @@ Notes:
 
 - Zed also accepts the key via the `OPENAI_API_KEY` environment variable set
   before launching the editor.
+
+## Quick check
+
+Run [`verify.sh`](./verify.sh) to confirm your key and the gateway work
+before merging the settings block:
+
+```bash
+export TALOS_API_KEY=talos_YOUR_KEY
+bash verify.sh
+```
+
+For a runnable client instead of curl, see [`openai_sdk.py`](./openai_sdk.py)
+(same script as `examples/python/`).
