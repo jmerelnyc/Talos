@@ -1,0 +1,14 @@
+{
+  "language_models": {
+    "openai": {
+      "api_url": "https://api.talos.ai/v1",
+      "available_models": [
+        {
+          "name": "talos-auto",
+          "display_name": "Talos Auto",
+          "max_tokens": 128000
+        }
+      ]
+    }
+  }
+}
