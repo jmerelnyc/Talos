@@ -4,12 +4,37 @@ from __future__ import annotations
 
 import asyncio
 import json
+from typing import Dict
 
 import aiohttp
 
 from .config import WorkerConfig
-from .inference import list_models
+from .inference import list_models, stream_chat
 from .state import RuntimeState
+
+
+async def _run_job(ws: aiohttp.ClientWebSocketResponse, session: aiohttp.ClientSession,
+                   ollama: str, state: RuntimeState, job: dict) -> None:
+    job_id = job["jobId"]
+    usage: Dict[str, int] = {"prompt": 0, "completion": 0}
+    state.jobs_active += 1
+    try:
+        async for delta in stream_chat(session, ollama, job["model"], job["messages"], usage):
+            await ws.send_json({"type": "job_chunk", "jobId": job_id, "delta": delta})
+        await ws.send_json(
+            {
+                "type": "job_done",
+                "jobId": job_id,
+                "promptTokens": usage["prompt"],
+                "completionTokens": usage["completion"],
+            }
+        )
+        state.jobs_handled += 1
+        state.tokens_served += usage["prompt"] + usage["completion"]
+    except Exception as exc:  # noqa: BLE001 - report any inference failure upstream
+        await ws.send_json({"type": "job_error", "jobId": job_id, "message": str(exc)})
+    finally:
+        state.jobs_active = max(0, state.jobs_active - 1)
 
 
 async def _heartbeat(ws: aiohttp.ClientWebSocketResponse, state: RuntimeState, interval: float) -> None:
@@ -41,6 +66,7 @@ async def _connect_once(config: WorkerConfig, state: RuntimeState) -> None:
             print(f"[talos] serving models: {', '.join(models) or '(none - install some in Ollama)'}")
 
             hb_task: asyncio.Task | None = None
+            jobs: Dict[str, asyncio.Task] = {}
 
             try:
                 async for msg in ws:
@@ -52,6 +78,9 @@ async def _connect_once(config: WorkerConfig, state: RuntimeState) -> None:
                     if kind == "welcome":
                         interval = max(5.0, data.get("heartbeatIntervalMs", 15000) / 1000)
                         hb_task = asyncio.create_task(_heartbeat(ws, state, interval))
+                    elif kind == "job":
+                        task = asyncio.create_task(_run_job(ws, session, config.ollama, state, data))
+                        jobs[data["jobId"]] = task
             finally:
                 state.connected = False
                 if hb_task:
