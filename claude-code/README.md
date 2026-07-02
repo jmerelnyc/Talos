@@ -28,10 +28,13 @@ Notes:
 
 ## Quick check
 
+Run [`verify.sh`](./verify.sh) to confirm your key and the gateway work
+before launching `claude`:
+
 ```bash
-curl "$ANTHROPIC_BASE_URL/v1/messages" \
-  -H "x-api-key: $ANTHROPIC_API_KEY" \
-  -H "anthropic-version: 2023-06-01" \
-  -H "content-type: application/json" \
-  -d '{"model":"talos-auto","max_tokens":128,"messages":[{"role":"user","content":"Say hi"}]}'
+export TALOS_API_KEY=talos_YOUR_KEY
+bash verify.sh
 ```
+
+For a runnable client instead of curl, see
+[`anthropic_sdk.py`](./anthropic_sdk.py) (same script as `examples/python/`).
