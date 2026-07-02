@@ -17,6 +17,8 @@ DEFAULT_OLLAMA = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
 class WorkerConfig:
     server: str = DEFAULT_SERVER
     ollama: str = DEFAULT_OLLAMA
+    token: str | None = None
+    worker_id: str | None = None
 
     def save(self) -> None:
         CONFIG_DIR.mkdir(parents=True, exist_ok=True)
