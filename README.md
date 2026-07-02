@@ -55,9 +55,18 @@ talos-worker run --allocation 0.5
 
 ## Using talos-auto in your editor
 
-See [`docs/`](./docs) for Cursor, VS Code (Continue/Cline), Claude Code,
-JetBrains AI Assistant, Zed and Aider setup. For runnable SDK scripts, see
-[`examples/`](./examples).
+Each tool has its own top-level folder with a guide, a config snippet, a
+`verify.sh` quickstart script and a bundled SDK example:
+
+- [`cursor/`](./cursor)
+- [`vscode/`](./vscode) (Continue / Cline)
+- [`claude-code/`](./claude-code)
+- [`jetbrains/`](./jetbrains)
+- [`zed/`](./zed)
+- [`aider/`](./aider)
+
+See [`docs/`](./docs) for the shared overview, or [`examples/`](./examples)
+for more example stacks (Go, Node.js, Vercel AI SDK, LiteLLM).
 
 ## Contributing
 
