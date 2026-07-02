@@ -40,7 +40,8 @@ talos-worker run --allocation 0.5
 
 - Opens a local dashboard at http://127.0.0.1:8674 with live status and a power
   (allocation) slider.
-- `--allocation 0..1` sets how much of the machine you offer.
+- `--allocation 0..1` sets how much of the machine you offer. It maps to
+  concurrency/duty-cycle, not a literal power percentage.
 - Uptime accrues while connected; earnings are credited per served job and
   visible on your Talos dashboard.
 
