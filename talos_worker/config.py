@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import json
 import os
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 CONFIG_DIR = Path(os.environ.get("TALOS_HOME", Path.home() / ".talos"))
@@ -13,12 +13,17 @@ DEFAULT_SERVER = os.environ.get("TALOS_SERVER", "http://localhost:8080")
 DEFAULT_OLLAMA = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
 
 
+def _default_name() -> str:
+    return os.environ.get("COMPUTERNAME") or "worker"
+
+
 @dataclass
 class WorkerConfig:
     server: str = DEFAULT_SERVER
     ollama: str = DEFAULT_OLLAMA
     token: str | None = None
     worker_id: str | None = None
+    name: str = field(default_factory=_default_name)
 
     def save(self) -> None:
         CONFIG_DIR.mkdir(parents=True, exist_ok=True)
