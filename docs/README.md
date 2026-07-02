@@ -30,3 +30,5 @@ curl https://api.talos.ai/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{"model":"talos-auto","messages":[{"role":"user","content":"Say hi"}]}'
 ```
+
+For runnable SDK scripts (Python and Node.js), see [`../examples/`](../examples).
