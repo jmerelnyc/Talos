@@ -55,15 +55,19 @@ talos-worker run --allocation 0.5
 
 ## Using talos-auto in your editor
 
-Each tool has its own top-level folder with a guide, a config snippet, a
-`verify.sh` quickstart script and a bundled SDK example:
+This repo is for two different audiences:
 
-- [`cursor/`](./cursor)
-- [`vscode/`](./vscode) (Continue / Cline)
-- [`claude-code/`](./claude-code)
-- [`jetbrains/`](./jetbrains)
-- [`zed/`](./zed)
-- [`aider/`](./aider)
+- **Sharing a GPU?** That's `talos-worker`, above: pair it, run it, earn.
+- **Just want talos-auto in your editor?** You do not need to run anything;
+  point your tool at the hosted gateway. Two ways to do that:
+
+  - Automatic: install [`sdk/`](./sdk) and run `talos setup <tool>` — it
+    writes the real config file for you and backs up the original.
+  - Manual: each tool has its own folder with a guide, a config snippet, a
+    `verify.sh` quickstart script and a bundled SDK example:
+    [`cursor/`](./cursor), [`vscode/`](./vscode) (Continue / Cline),
+    [`claude-code/`](./claude-code), [`jetbrains/`](./jetbrains),
+    [`zed/`](./zed), [`aider/`](./aider).
 
 See [`docs/`](./docs) for the shared overview, or [`examples/`](./examples)
 for more example stacks (Go, Node.js, Vercel AI SDK, LiteLLM).
