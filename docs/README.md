@@ -13,14 +13,16 @@ can use it by setting a base URL, an API key, and a model name.
 `talos-auto` is a routing model: it forwards to the best available backend. Open
 `talos-*` models are served by the community GPU pool.
 
-Guides (each folder has a README plus a ready-to-copy config file):
+Guides live next to this file, one folder per tool, at the repo root. Each
+one is self-contained: a README, a ready-to-copy config file, a `verify.sh`
+quickstart script, and a bundled SDK example.
 
-- [Cursor](./cursor)
-- [VS Code (Continue / Cline)](./vscode)
-- [Claude Code](./claude-code)
-- [JetBrains AI Assistant](./jetbrains)
-- [Zed](./zed)
-- [Aider](./aider)
+- [Cursor](../cursor)
+- [VS Code (Continue / Cline)](../vscode)
+- [Claude Code](../claude-code)
+- [JetBrains AI Assistant](../jetbrains)
+- [Zed](../zed)
+- [Aider](../aider)
 
 ## Quick check
 
@@ -31,4 +33,5 @@ curl https://api.talos.ai/v1/chat/completions \
   -d '{"model":"talos-auto","messages":[{"role":"user","content":"Say hi"}]}'
 ```
 
-For runnable SDK scripts (Python and Node.js), see [`../examples/`](../examples).
+For more example stacks (Go, Node.js, Vercel AI SDK, LiteLLM), see
+[`../examples/`](../examples).
