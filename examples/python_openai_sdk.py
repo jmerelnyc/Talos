@@ -24,7 +24,7 @@ MODEL = os.environ.get("TALOS_MODEL", "talos-auto")
 def main() -> None:
     api_key = os.environ.get("TALOS_API_KEY")
     if not api_key:
-        sys.exit("Set TALOS_API_KEY to a key from your Talos dashboard.")
+        sys.exit("TALOS_API_KEY is not set. Create a key on your Talos dashboard and export it.")
 
     client = OpenAI(api_key=api_key, base_url=BASE_URL)
 
