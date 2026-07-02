@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import sys
 
 import aiohttp
 
@@ -41,6 +42,20 @@ async def _pair(args: argparse.Namespace) -> None:
     print("[talos] start sharing with: talos-worker run")
 
 
+async def _status(_args: argparse.Namespace) -> None:
+    config = WorkerConfig.load()
+    gpu = detect_gpu()
+    print(f"server:   {config.server}")
+    print(f"paired:   {'yes' if config.token else 'no'}")
+    print(f"workerId: {config.worker_id}")
+    print(f"name:     {config.name}")
+    print(f"gpu:      {gpu['name'] if gpu else 'none (CPU only)'}"
+          + (f" ({gpu['vramMb']} MB)" if gpu else ""))
+    async with aiohttp.ClientSession() as session:
+        models = await list_models(session, config.ollama)
+    print(f"models:   {', '.join(models) or '(none)'}")
+
+
 async def _run(args: argparse.Namespace) -> None:
     config = WorkerConfig.load()
     if args.server:
@@ -70,8 +85,15 @@ def main() -> None:
     p_run.add_argument("--no-dashboard", action="store_true", help="Disable the local dashboard")
     p_run.set_defaults(func=_run)
 
+    p_status = sub.add_parser("status", help="Show worker configuration and GPU info")
+    p_status.set_defaults(func=_status)
+
     args = parser.parse_args()
-    asyncio.run(args.func(args))
+    try:
+        asyncio.run(args.func(args))
+    except KeyboardInterrupt:
+        print("\n[talos] stopped.")
+        sys.exit(0)
 
 
 if __name__ == "__main__":
