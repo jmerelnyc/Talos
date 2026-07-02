@@ -24,6 +24,15 @@ Then in another terminal:
 talos-worker status
 ```
 
+`sdk/` is a separate package (the `talos` CLI and Python client for people
+who just consume the network). It has its own dependencies and tests:
+
+```bash
+cd sdk
+pip install -e ".[dev]"
+pytest
+```
+
 ## Code style
 
 - Python 3.9+, type hints, and `from __future__ import annotations` at the
