@@ -5,7 +5,7 @@
 //
 // Run:
 //   export TALOS_API_KEY=talos_YOUR_KEY
-//   node node_openai_sdk.mjs
+//   node openai_sdk.mjs
 
 import OpenAI from "openai";
 
