@@ -13,6 +13,11 @@ can use it by setting a base URL, an API key, and a model name.
 `talos-auto` is a routing model: it forwards to the best available backend. Open
 `talos-*` models are served by the community GPU pool.
 
+Prefer not to copy-paste? Install [`../sdk/`](../sdk) and run
+`talos setup <tool>` — it writes the real config file for you and backs up
+the original. The rest of this page, and the folders below, are the manual
+version of the same setup.
+
 Guides live next to this file, one folder per tool, at the repo root. Each
 one is self-contained: a README, a ready-to-copy config file, a `verify.sh`
 quickstart script, and a bundled SDK example.
