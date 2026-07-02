@@ -12,5 +12,8 @@ dependencies = [
   "aiohttp>=3.9",
 ]
 
+[project.scripts]
+talos-worker = "talos_worker.__main__:main"
+
 [tool.setuptools]
 packages = ["talos_worker"]
