@@ -55,4 +55,10 @@ talos-worker run --allocation 0.5
 
 ## Using talos-auto in your editor
 
-See [`docs/`](./docs) for Cursor, VS Code (Continue/Cline) and Claude Code setup.
+See [`docs/`](./docs) for Cursor, VS Code (Continue/Cline), Claude Code,
+JetBrains AI Assistant, Zed and Aider setup. For runnable SDK scripts, see
+[`examples/`](./examples).
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md).
