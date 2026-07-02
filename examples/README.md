@@ -7,25 +7,15 @@ Anthropic-compatible client would; none of this talks to your local worker.
 All examples read the API key from `TALOS_API_KEY`. Create one on your
 [dashboard](https://talos.ai/dashboard).
 
-## Python
+| Folder | Stack |
+| --- | --- |
+| [`python/`](./python) | Official `openai` and `anthropic` Python SDKs |
+| [`node/`](./node) | Official `openai` Node.js SDK |
+| [`go/`](./go) | Community `go-openai` client |
+| [`vercel-ai-sdk/`](./vercel-ai-sdk) | Vercel AI SDK (`ai` + `@ai-sdk/openai`) |
+| [`litellm/`](./litellm) | LiteLLM proxy config, for any LiteLLM-compatible client |
 
-```bash
-pip install openai anthropic
-export TALOS_API_KEY=talos_YOUR_KEY
-
-python python_openai_sdk.py
-python python_anthropic_sdk.py
-```
-
-## Node.js
-
-```bash
-cd examples
-npm install
-export TALOS_API_KEY=talos_YOUR_KEY
-
-node node_openai_sdk.mjs
-```
+Each folder has its own README with exact install and run steps.
 
 ## Environment variables
 
