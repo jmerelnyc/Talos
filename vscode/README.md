@@ -31,3 +31,16 @@ For development use `"apiBase": "http://localhost:8080/v1"`.
 4. **Model ID**: `talos-auto` (or `talos-llama-3.1-8b`).
 
 Both extensions use streaming `chat/completions`, which the gateway supports.
+
+## Quick check
+
+Run [`verify.sh`](./verify.sh) to confirm your key and the gateway work
+before editing the extension config:
+
+```bash
+export TALOS_API_KEY=talos_YOUR_KEY
+bash verify.sh
+```
+
+For a runnable client instead of curl, see [`openai_sdk.py`](./openai_sdk.py)
+(same script as `examples/python/`).
