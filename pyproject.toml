@@ -5,11 +5,14 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "talos-worker"
 version = "0.1.0"
-description = "Talos GPU worker"
+description = "Talos GPU worker: share your GPU with the Talos network and earn. Pairs with the Talos app via a code, runs open models over a WebSocket job protocol, and reports uptime."
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
   "aiohttp>=3.9",
+  # NVIDIA GPU detection. Optional at runtime: the worker still runs on CPU
+  # (or non-NVIDIA) if this cannot initialise.
+  "nvidia-ml-py>=12.535.0",
 ]
 
 [project.scripts]
