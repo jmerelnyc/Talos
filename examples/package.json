@@ -1,0 +1,9 @@
+{
+  "name": "talos-worker-examples",
+  "private": true,
+  "type": "module",
+  "description": "Runnable examples for calling the Talos gateway from Node.js",
+  "dependencies": {
+    "openai": "^4.0.0"
+  }
+}
