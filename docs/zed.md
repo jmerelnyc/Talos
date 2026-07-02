@@ -1,0 +1,34 @@
+# Zed
+
+Zed's assistant panel supports OpenAI-compatible providers through
+`settings.json`.
+
+Open **Zed -> Settings -> Open Settings** and add:
+
+```json
+{
+  "language_models": {
+    "openai": {
+      "api_url": "https://api.talos.ai/v1",
+      "available_models": [
+        {
+          "name": "talos-auto",
+          "display_name": "Talos Auto",
+          "max_tokens": 128000
+        }
+      ]
+    }
+  }
+}
+```
+
+Zed asks for the API key the first time you use the OpenAI provider; paste
+your Talos key (`talos_...`). Then open the assistant panel and pick
+`talos-auto` from the model dropdown.
+
+For local development, point `api_url` at `http://localhost:8080/v1`.
+
+Notes:
+
+- Zed also accepts the key via the `OPENAI_API_KEY` environment variable set
+  before launching the editor.
