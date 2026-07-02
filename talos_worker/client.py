@@ -3,6 +3,7 @@ inference jobs from the scheduler by streaming tokens from local Ollama."""
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import json
 from typing import Dict
 
@@ -31,8 +32,13 @@ async def _run_job(ws: aiohttp.ClientWebSocketResponse, session: aiohttp.ClientS
         )
         state.jobs_handled += 1
         state.tokens_served += usage["prompt"] + usage["completion"]
+    except asyncio.CancelledError:
+        with contextlib.suppress(Exception):
+            await ws.send_json({"type": "job_error", "jobId": job_id, "message": "cancelled"})
+        raise
     except Exception as exc:  # noqa: BLE001 - report any inference failure upstream
-        await ws.send_json({"type": "job_error", "jobId": job_id, "message": str(exc)})
+        with contextlib.suppress(Exception):
+            await ws.send_json({"type": "job_error", "jobId": job_id, "message": str(exc)})
     finally:
         state.jobs_active = max(0, state.jobs_active - 1)
 
@@ -81,7 +87,14 @@ async def _connect_once(config: WorkerConfig, state: RuntimeState) -> None:
                     elif kind == "job":
                         task = asyncio.create_task(_run_job(ws, session, config.ollama, state, data))
                         jobs[data["jobId"]] = task
+                        task.add_done_callback(lambda t, jid=data["jobId"]: jobs.pop(jid, None))
+                    elif kind == "job_cancel":
+                        t = jobs.get(data.get("jobId"))
+                        if t:
+                            t.cancel()
             finally:
                 state.connected = False
                 if hb_task:
                     hb_task.cancel()
+                for t in jobs.values():
+                    t.cancel()
