@@ -10,6 +10,7 @@ from typing import Dict
 import aiohttp
 
 from .config import WorkerConfig
+from .gpu import detect_gpu
 from .inference import list_models, stream_chat
 from .state import RuntimeState
 
@@ -49,7 +50,6 @@ async def _heartbeat(ws: aiohttp.ClientWebSocketResponse, state: RuntimeState, i
         await ws.send_json(
             {"type": "heartbeat", "allocation": state.allocation, "busy": state.jobs_active > 0}
         )
-
 
 async def _connect_once(config: WorkerConfig, state: RuntimeState) -> None:
     async with aiohttp.ClientSession() as session:
@@ -98,3 +98,30 @@ async def _connect_once(config: WorkerConfig, state: RuntimeState) -> None:
                     hb_task.cancel()
                 for t in jobs.values():
                     t.cancel()
+
+
+async def run_worker(config: WorkerConfig) -> None:
+    if not config.token:
+        raise SystemExit("Not paired. Run `talos-worker pair` first.")
+
+    gpu = detect_gpu()
+    state = RuntimeState(
+        server=config.server,
+        worker_id=config.worker_id,
+        allocation=config.allocation,
+        gpu_name=gpu["name"] if gpu else None,
+        vram_mb=gpu["vramMb"] if gpu else None,
+    )
+
+    backoff = 1.0
+    try:
+        while True:
+            try:
+                await _connect_once(config, state)
+                print("[talos] disconnected, reconnecting...")
+            except (aiohttp.ClientError, OSError) as exc:
+                print(f"[talos] connection error: {exc}; retrying in {backoff:.0f}s")
+                await asyncio.sleep(backoff)
+                backoff = min(30.0, backoff * 2)
+    except asyncio.CancelledError:
+        pass
