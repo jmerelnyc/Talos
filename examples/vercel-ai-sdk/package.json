@@ -1,0 +1,10 @@
+{
+  "name": "talos-vercel-ai-sdk-example",
+  "private": true,
+  "type": "module",
+  "description": "Vercel AI SDK example pointed at the Talos gateway",
+  "dependencies": {
+    "ai": "^5.0.0",
+    "@ai-sdk/openai": "^3.0.0"
+  }
+}
