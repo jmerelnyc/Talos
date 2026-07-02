@@ -8,7 +8,7 @@ Install:
 
 Run:
     export TALOS_API_KEY=talos_YOUR_KEY
-    python python_anthropic_sdk.py
+    python anthropic_sdk.py
 """
 from __future__ import annotations
 

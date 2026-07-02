@@ -8,7 +8,7 @@ Install:
 
 Run:
     export TALOS_API_KEY=talos_YOUR_KEY
-    python python_openai_sdk.py
+    python openai_sdk.py
 """
 from __future__ import annotations
 
