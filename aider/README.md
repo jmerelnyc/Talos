@@ -30,3 +30,14 @@ Notes:
 ```bash
 aider --model openai/talos-auto --message "Say hi"
 ```
+
+To check the key and gateway without aider installed, run
+[`verify.sh`](./verify.sh):
+
+```bash
+export TALOS_API_KEY=talos_YOUR_KEY
+bash verify.sh
+```
+
+For a runnable client instead of curl, see [`openai_sdk.py`](./openai_sdk.py)
+(same script as `examples/python/`).
