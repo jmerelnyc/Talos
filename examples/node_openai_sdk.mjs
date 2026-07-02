@@ -15,7 +15,7 @@ const model = process.env.TALOS_MODEL || "talos-auto";
 async function main() {
   const apiKey = process.env.TALOS_API_KEY;
   if (!apiKey) {
-    console.error("Set TALOS_API_KEY to a key from your Talos dashboard.");
+    console.error("TALOS_API_KEY is not set. Create a key on your Talos dashboard and export it.");
     process.exit(1);
   }
 
