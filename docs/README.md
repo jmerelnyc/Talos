@@ -18,6 +18,9 @@ Guides:
 - [Cursor](./cursor.md)
 - [VS Code (Continue / Cline)](./vscode.md)
 - [Claude Code](./claude-code.md)
+- [JetBrains AI Assistant](./jetbrains.md)
+- [Zed](./zed.md)
+- [Aider](./aider.md)
 
 ## Quick check
 
