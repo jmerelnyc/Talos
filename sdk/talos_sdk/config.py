@@ -3,8 +3,8 @@ from __future__ import annotations
 
 import os
 
-DEFAULT_BASE_URL = "https://api.talos.ai/v1"
-DEFAULT_ANTHROPIC_BASE_URL = "https://api.talos.ai"
+DEFAULT_BASE_URL = "https://api.usetalos.xyz/v1"
+DEFAULT_ANTHROPIC_BASE_URL = "https://api.usetalos.xyz"
 DEFAULT_MODEL = "talos-auto"
 
 API_KEY_ENV = "TALOS_API_KEY"
@@ -17,7 +17,7 @@ def resolve_api_key(explicit: str | None = None) -> str:
     if not key:
         raise RuntimeError(
             f"No Talos API key found. Pass --api-key, or set {API_KEY_ENV}. "
-            "Create one on your dashboard: https://talos.ai/dashboard"
+            "Create one on your dashboard: https://usetalos.xyz/dashboard"
         )
     return key
 
