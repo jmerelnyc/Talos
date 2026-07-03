@@ -9,7 +9,7 @@
 
 import OpenAI from "openai";
 
-const baseURL = process.env.TALOS_BASE_URL || "https://api.talos.ai/v1";
+const baseURL = process.env.TALOS_BASE_URL || "https://api.usetalos.xyz/v1";
 const model = process.env.TALOS_MODEL || "talos-auto";
 
 async function main() {

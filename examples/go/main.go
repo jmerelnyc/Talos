@@ -25,7 +25,7 @@ func main() {
 
 	baseURL := os.Getenv("TALOS_BASE_URL")
 	if baseURL == "" {
-		baseURL = "https://api.talos.ai/v1"
+		baseURL = "https://api.usetalos.xyz/v1"
 	}
 	model := os.Getenv("TALOS_MODEL")
 	if model == "" {

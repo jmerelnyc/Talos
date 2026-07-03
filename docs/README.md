@@ -3,9 +3,9 @@
 The Talos gateway is OpenAI- and Anthropic-compatible, so most AI coding tools
 can use it by setting a base URL, an API key, and a model name.
 
-- Base URL (OpenAI clients): `https://api.talos.ai/v1` (or your own server, e.g.
+- Base URL (OpenAI clients): `https://api.usetalos.xyz/v1` (or your own server, e.g.
   `http://localhost:8080/v1` in development)
-- API key: create one on your [dashboard](https://talos.ai/dashboard); it looks
+- API key: create one on your [dashboard](https://usetalos.xyz/dashboard); it looks
   like `talos_...`
 - Model: `talos-auto` (auto-routing), or an open model such as
   `talos-llama-3.1-8b`
@@ -32,7 +32,7 @@ quickstart script, and a bundled SDK example.
 ## Quick check
 
 ```bash
-curl https://api.talos.ai/v1/chat/completions \
+curl https://api.usetalos.xyz/v1/chat/completions \
   -H "Authorization: Bearer talos_YOUR_KEY" \
   -H "Content-Type: application/json" \
   -d '{"model":"talos-auto","messages":[{"role":"user","content":"Say hi"}]}'

@@ -17,7 +17,7 @@ import sys
 
 from anthropic import Anthropic
 
-BASE_URL = os.environ.get("TALOS_BASE_URL", "https://api.talos.ai")
+BASE_URL = os.environ.get("TALOS_BASE_URL", "https://api.usetalos.xyz")
 MODEL = os.environ.get("TALOS_MODEL", "talos-auto")
 
 

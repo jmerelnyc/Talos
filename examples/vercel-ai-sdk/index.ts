@@ -22,7 +22,7 @@ if (!apiKey) {
 
 const talos = createOpenAI({
   apiKey,
-  baseURL: process.env.TALOS_BASE_URL || "https://api.talos.ai/v1",
+  baseURL: process.env.TALOS_BASE_URL || "https://api.usetalos.xyz/v1",
 });
 
 async function main() {
