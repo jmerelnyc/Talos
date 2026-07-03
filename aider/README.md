@@ -4,7 +4,7 @@ Aider treats any OpenAI-compatible endpoint as a normal model through
 environment variables.
 
 ```bash
-export OPENAI_API_BASE="https://api.talos.ai/v1"
+export OPENAI_API_BASE="https://api.usetalos.xyz/v1"
 export OPENAI_API_KEY="talos_YOUR_KEY"
 aider --model openai/talos-auto
 ```
@@ -15,7 +15,7 @@ You can also copy [`.aider.conf.yml`](./.aider.conf.yml) into your project or
 home directory:
 
 ```yaml
-openai-api-base: https://api.talos.ai/v1
+openai-api-base: https://api.usetalos.xyz/v1
 openai-api-key: talos_YOUR_KEY
 model: openai/talos-auto
 ```

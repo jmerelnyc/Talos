@@ -14,7 +14,7 @@ model block from [`continue.config.json`](./continue.config.json):
       "title": "talos-auto",
       "provider": "openai",
       "model": "talos-auto",
-      "apiBase": "https://api.talos.ai/v1",
+      "apiBase": "https://api.usetalos.xyz/v1",
       "apiKey": "talos_YOUR_KEY"
     }
   ]
@@ -26,7 +26,7 @@ For development use `"apiBase": "http://localhost:8080/v1"`.
 ## Cline
 
 1. Open Cline settings -> **API Provider**: choose **OpenAI Compatible**.
-2. **Base URL**: `https://api.talos.ai/v1`
+2. **Base URL**: `https://api.usetalos.xyz/v1`
 3. **API Key**: `talos_YOUR_KEY`
 4. **Model ID**: `talos-auto` (or `talos-llama-3.1-8b`).
 

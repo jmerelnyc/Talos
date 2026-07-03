@@ -7,7 +7,7 @@ Cursor supports OpenAI-compatible endpoints with a custom base URL.
 3. Enable **Override OpenAI Base URL** and set it to:
 
    ```
-   https://api.talos.ai/v1
+   https://api.usetalos.xyz/v1
    ```
 
    (In development: `http://localhost:8080/v1`.)

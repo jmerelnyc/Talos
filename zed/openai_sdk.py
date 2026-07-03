@@ -17,7 +17,7 @@ import sys
 
 from openai import OpenAI
 
-BASE_URL = os.environ.get("TALOS_BASE_URL", "https://api.talos.ai/v1")
+BASE_URL = os.environ.get("TALOS_BASE_URL", "https://api.usetalos.xyz/v1")
 MODEL = os.environ.get("TALOS_MODEL", "talos-auto")
 
 

@@ -7,7 +7,7 @@ third-party provider settings.
 1. Open **Settings -> Tools -> AI Assistant -> Models**.
 2. Under **Third-party AI providers**, add a custom OpenAI-compatible service.
 3. Set:
-   - **URL**: `https://api.talos.ai/v1`
+   - **URL**: `https://api.usetalos.xyz/v1`
    - **API key**: your Talos key (`talos_...`)
    - **Model name**: `talos-auto`
 4. Apply, then pick the new provider in the AI Assistant chat model dropdown.

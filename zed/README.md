@@ -10,7 +10,7 @@ Open **Zed -> Settings -> Open Settings** and merge in the block from
 {
   "language_models": {
     "openai": {
-      "api_url": "https://api.talos.ai/v1",
+      "api_url": "https://api.usetalos.xyz/v1",
       "available_models": [
         {
           "name": "talos-auto",

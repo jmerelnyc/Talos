@@ -7,7 +7,7 @@ Code at it with environment variables.
 Set these before launching `claude`, or source [`env.sh`](./env.sh) directly:
 
 ```bash
-export ANTHROPIC_BASE_URL="https://api.talos.ai"
+export ANTHROPIC_BASE_URL="https://api.usetalos.xyz"
 export ANTHROPIC_API_KEY="talos_YOUR_KEY"
 # Route Claude Code's model names to talos-auto:
 export ANTHROPIC_MODEL="talos-auto"
