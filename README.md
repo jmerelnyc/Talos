@@ -29,7 +29,7 @@ Get a code from your dashboard (Pair a device), then:
 ```bash
 talos-worker pair            # prompts for the code
 # or non-interactively:
-talos-worker pair --code TALOS-XXXX-XXXX --server https://api.talos.ai
+talos-worker pair --code TALOS-XXXX-XXXX --server https://api.usetalos.xyz
 ```
 
 ## Run
