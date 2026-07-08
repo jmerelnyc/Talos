@@ -51,7 +51,7 @@ talos-worker run --allocation 0.5
 | --- | --- |
 | `talos-worker pair` | Pair this machine with a code |
 | `talos-worker run` | Connect and serve inference jobs |
-| `talos-worker status` | Show config, GPU and available models |
+| `talos-worker status` | Show config, GPU and available models and jobs |
 
 ## Using talos-auto in your editor
 
